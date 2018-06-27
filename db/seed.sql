@@ -9,3 +9,7 @@ INSERT INTO poem_type(category) VALUES ('auto-generated');
 INSERT INTO poems (poem_type,poem_title,poem_text,poem_author) 
 VALUES ('free-form','In A Station of the Metro', 'The apparition of these faces in the crowd;
 Petals on a wet, black bough.', 'Ezra Pound');
+
+INSERT INTO poems (poem_type,poem_title,poem_text,poem_author) VALUES ('free-from','An old silent pond...
+A frog jumps into the pond,
+splash! Silence again.', "Matsuo Basho");

@@ -80,8 +80,10 @@
         category: $("#category").val().trim()
       };
 
+      console.log(newPoem);
 
-      $.post("/api/poems", newCharacter)
+
+      $.post("/api/poems", newPoem)
         .then(function(data) {
           console.log("add.html", data);
           alert("Adding your haiku...");
