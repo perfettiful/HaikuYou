@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="icon" type="image/png" href="../../public/assets/images/favicon.ico">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4"
+        crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
+        crossorigin="anonymous"></script>
+    <title>Read this</title>
+</head>
+
+<body>
+    <div class="nav"></div>
+    <div class="container">
+        <div id="search-bar" class="row">
+            <h2>View poems by type</h2>
+            <div class="row">
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false">
+                        Category
+                    </button>
+                    <div class="dropdown-menu" id="categoryDropDown" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="#">Action</a>
+                    </div>
+                </div>
+                <fieldset>
+                    <label for="date">Date</label>
+                    <input type="date" id="dateSearch" name="date"/>
+                </fieldset>
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false">
+                        Author
+                    </button>
+                    <div class="dropdown-menu" 
+                    id="authorDropDown" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="#">Action</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="poem-spot" class="row"></div>
+
+
+    <script type="text/javascript">	
+
+        //creates the poem elements and appends each of the results to the poem-spot div    
+        function displayPoems() {
+            $.ajax({ url: "/", method: "GET" })
+                .done(function (data) {
+                    console.log(data);
+                    for (var i = 0; i < data.length; i++) {
+                        var chosen = data[i];
+                        var poem = $("<div class='poem-blob'>");
+                        var poemNumber = i + 1;
+                        poem.attr("id", "poem" + i + 1);
+                        poem.append("<h2>" + chosen.poem_title + "</h2><p>" + chosen.poem_text + "</p><h4>" + chosen.poem_author);
+                        $("#poem-spot").append(poem);
+                        console.log(poem);
+                    }
+                });
+        }
+        displayPoems();
+
+        //adds categories to the dropdown
+        function addCategories() {
+            $.ajax({ url: "/", method: "GET " }).done(function (data) {
+                console.log(data);
+                for (var j = 0; j < data.length; j++) {
+                    var option = data[j];
+                    var choice = $("<a class='dropdown-item'>" + option.category + "</a>");
+                    $("#categoryDropDown").append(choice);
+                    console.log(choice);
+                }
+            });
+        }
+        addCategories();
+
+        //adds authors to the dropdown
+        function addAuthors() {
+            $.ajax({ url: "/", method: "GET " }).done(function (data) {
+                console.log(data);
+                for (var z = 0; z < data.length; z++) {
+                    var option = data[z];
+                    var person = $("<a class='dropdown-item'>" + option.poem_author + "</a>");
+                    $("#authorDropDown").append(person);
+                    console.log(choice);
+                }
+            });
+        }
+        addAuthors();
+    </script>
+</body>
+
+</html>
