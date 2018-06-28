@@ -1,19 +1,32 @@
 ### Schema
-CREATE DATABASE poems_db;
-USE poems_db;
+CREATE DATABASE haiku_db;
+USE haiku_db;
 
-CREATE TABLE poems
+CREATE TABLE haikus
 (
-	id int NOT NULL AUTO_INCREMENT,
-    poem_type VARCHAR(1) NOT NULL,
-	poem_title VARCHAR(255) NOT NULL,
-    poem_text GLOB,
-    poem_author VARCHAR(255),
+	id INT NOT NULL AUTO_INCREMENT,
+    haiku_form_type VARCHAR(1) NOT NULL,
+	haiku_title VARCHAR(50) NOT NULL,
+    haiku_author VARCHAR(255),
+    haiku_category VARCHAR(100) NOT NULL,
 	PRIMARY KEY (id)
 );
 
-CREATE TABLE poem_type (
-    id int NOT NULL AUTO_INCREMENT,
-    category VARCHAR(255) NOT NULL,
+CREATE TABLE haiku_type (
+    id INT NOT NULL AUTO_INCREMENT,
+    form_type VARCHAR(50) NOT NULL,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE haiku_category (
+	id INT NOT NULL AUTO_INCREMENT,
+    category VARCHAR(100),
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE haiku_snaps (
+	id INT NOT NULL AUTO_INCREMENT,
+    haiku_id INT,
+    total_snaps INT,
     PRIMARY KEY (id)
 );
