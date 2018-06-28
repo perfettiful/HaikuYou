@@ -11,7 +11,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(bodyParser.json());
 
-app.use(express.static("public"));
+app.use(express.static('./app/public'));
 
 require("./routes/html-routes.js")(app);
 require("./routes/api-routes.js")(app);

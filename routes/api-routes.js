@@ -25,7 +25,7 @@ module.exports = function(app) {
   app.post("/api/poems", function(req, res) {
     db.Todo.create({
       haiku_title: req.body.title,
-      haiku_text: req.body.text,
+      haiku_body: req.body.text,
       haiku_author: req.body.author,
       haiku_category: req.body.category
     }).then(function(dbPoems) {
