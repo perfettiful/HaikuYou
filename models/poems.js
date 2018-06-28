@@ -1,42 +1,23 @@
-var express = require("express");
+// Import the ORM to create functions that will interact with the database.
+var orm = require("../config/orm.js");
 
-var router = express.Router();
+var poem = {
+  selectAll: function(cb) {
+    orm.selectAll("haikus", function(res) {
+      cb(res);
+    });
+  },
+  insertOne: function(cols, vals, cb) {
+    orm.insertOne("haikus", cols, vals, function(res) {
+      cb(res);
+    });
+  },
+  findOne: function(objColVals, condition, cb) {
+    orm.updateOne("haikus", objColVals, condition, function(res) {
+      cb(res);
+    });
+  },
+};
 
-// Import the model to use its database functions.
-var poem = require("../models/poem.js");
-
-// Route to get all poems
-router.get("/", function(req, res) {
-  poem.selectAll(function(data) {
-    var hbsObject = {
-      poems: data
-    };
-    console.log(hbsObject);
-    res.render("index", hbsObject);
-  });
-});
-
-// Route to add a poem
-router.post("/api/poems", function(req, res) {
-  burger.insertOne([
-    "poem_type", "poem_title", "poem_text", "poem_author"
-  ], [
-    req.body.poem_type, req.body.poem_title, req.body.poem_text, req.body.poem_author
-  ], function(data) {
-    res.redirect('/');
-  });
-});
-
-// Route to get a poem by category
-router.get("/api/poems/:category", function(req, res) {
-  poem.findOne(function(data) {
-    // var hbsObject = {
-    //   poems: data
-    // };
-    // console.log(hbsObject);
-    // res.render("index", hbsObject);
-  });
-});
-
-// Export routes for server.js to use
-module.exports = router;
+// Export the database functions for the controller to use
+module.exports = poem;
