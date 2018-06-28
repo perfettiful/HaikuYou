@@ -3,23 +3,21 @@ var bodyParser = require("body-parser");
 
 var app = express();
 
-// Set the port of our application
-// process.env.PORT lets the port be set by Heroku
 var PORT = process.env.PORT || 8080;
 
-// Sets up the Express app to handle data parsing
+var db = require("./models");
+
 app.use(bodyParser.urlencoded({ extended: true }));
+
 app.use(bodyParser.json());
 
-var exphbs = require("express-handlebars");
+app.use(express.static("public"));
 
-app.engine("handlebars", exphbs({ defaultLayout: "main" }));
-app.set("view engine", "handlebars");
+require("./routes/html-routes.js")(app);
+require("./routes/api-routes.js")(app);
 
-const routes = require("./controllers/poems_controllers");
-app.use(routes)
-// Start our server so that it can begin listening to client requests.
-app.listen(PORT, function() {
-  // Log (server-side) when our server has started
-  console.log("Server listening on: http://localhost:" + PORT);
+db.sequelize.sync({ force: true }).then(function() {
+  app.listen(PORT, function() {
+    console.log("App listening on PORT " + PORT);
+  });
 });
