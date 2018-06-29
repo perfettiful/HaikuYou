@@ -28,7 +28,7 @@
               <a class="nav-link" href="#">About</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Compose</a>
+              <a class="nav-link" href="/compose">Compose</a>
             </li>
           </ul>
     <!--End Main Nav Bar-->
@@ -57,7 +57,7 @@
                         aria-expanded="false">
                         Author
                     </button>
-                    <div class="dropdown-menu" 
+                    <div class="dropdown-menu"
                     id="authorDropDown" aria-labelledby="dropdownMenuButton">
                         <a class="dropdown-item" href="#">Action</a>
                     </div>
@@ -66,12 +66,12 @@
         </div>
     </div>
     <div id="poem-spot" class="row"></div>
-    
+
     <!--End Page Body-->
 
-    <script type="text/javascript">	
+    <script type="text/javascript">
 
-        //creates the poem elements and appends each of the results to the poem-spot div    
+        //creates the poem elements and appends each of the results to the poem-spot div
         function displayPoems() {
             $.ajax({ url: "/", method: "GET" })
                 .done(function (data) {
