@@ -17,6 +17,10 @@ module.exports = function(app) {
     res.sendFile(path.join(__dirname, "../public/home.html"));
   });
 
+  app.get("/about", function(req, res) {
+    res.sendFile(path.join(__dirname, "../public/about.html"));
+  });
+
   app.get("/compose", function(req, res) {
     res.sendFile(path.join(__dirname, "../public/freeform.html"));
   });
