@@ -14,11 +14,14 @@ module.exports = function(app) {
 
   // index route loads view.html
   app.get("/", function(req, res) {
-    res.sendFile(path.join(__dirname, "../public/html/home.html"));
+    res.sendFile(path.join(__dirname, "../public/home.html"));
   });
 
   app.get("/compose", function(req, res) {
     res.sendFile(path.join(__dirname, "../public/freeform.html"));
   });
 
+  app.get("/read", function(req, res) {
+    res.sendFile(path.join(__dirname, "../public/read.html"));
+  });
 };
