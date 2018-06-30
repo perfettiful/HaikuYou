@@ -40,7 +40,7 @@ module.exports = function(app) {
   app.get("/api/poems/:category", function(req, res) {
     db.Haiku.findAll({
       where: {
-        category: req.params.category
+        haiku_category: req.params.category
       }
     })
       .then(function(dbPoems) {
