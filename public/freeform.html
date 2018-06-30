@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>Haiku You</title>
@@ -10,6 +11,7 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
 </head>
+
 <body>
 
   <div class="container">
@@ -17,8 +19,14 @@
       <h1>Haiku You</h1>
       <h3>Japanese poetry for All!</h3>
       <hr>
-      <a href="/"><button class="btn btn-danger btn-lg"><span class="fa fa-eye"></span> Home</button></a>
-      <a href="/read"><button class="btn btn-danger btn-lg"><span class="fa fa-eye"></span> View Haikus!</button></a>
+      <a href="/">
+        <button class="btn btn-danger btn-lg">
+          <span class="fa fa-eye"></span> Home</button>
+      </a>
+      <a href="/read">
+        <button class="btn btn-danger btn-lg">
+          <span class="fa fa-eye"></span> View Haikus!</button>
+      </a>
     </div>
     <div class="row">
 
@@ -26,7 +34,9 @@
 
         <div class="panel panel-default">
           <div class="panel-heading">
-            <h3 class="panel-title"><strong>Add Your Poem</strong></h3>
+            <h3 class="panel-title">
+              <strong>Add Your Poem</strong>
+            </h3>
           </div>
           <div class="panel-body">
             <form method="POST" role="form">
@@ -53,22 +63,23 @@
                 <input type="text" class="form-control" id="author">
               </div>
               <div class="form-group">
-                  <label for="role">Poem Category</label>
-                  <select class="custom-select" id="category">
-                    <option selected>Select One</option>
-                    <option value="Action">Action</option>
-                    <option value="Humor">Humor</option>
-                    <option value="Nature">Nature</option>
-                    <option value="Romantic">Romantic</option>
-                    <option value="NSFW">NSFW</option>
-                  </select>
+                <label for="role">Poem Category</label>
+                <select class="custom-select" id="category">
+                  <option selected>Select One</option>
+                  <option value="Action">Action</option>
+                  <option value="Humor">Humor</option>
+                  <option value="Nature">Nature</option>
+                  <option value="Romantic">Romantic</option>
+                  <option value="NSFW">NSFW</option>
+                </select>
               </div>
 
 
             </form>
             <br>
             <div class="text-right">
-              <button type="submit" class="btn btn-primary btn-md" id="add-btn"><span class="fa fa-leaf"></span> Submit </button>
+              <button type="submit" class="btn btn-primary btn-md" id="add-btn">
+                <span class="fa fa-leaf"></span> Submit </button>
             </div>
           </div>
         </div>
@@ -77,9 +88,44 @@
     </div>
   </div>
 
+  <!--onClick Modal -->
+  <div class="modal fade" id="onClickModal" tabindex="-1" role="dialog" aria-labelledby="onClickeModalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="onClickModalTitle">User Submitted Haiku</h5>
+        </div>
+        <div class="modal-body" id="onClickModalBody">
+          <div class="row">
+            <div class="col-md-4 offset-md-4" id="haikuTitleModal">
+                <p>Body Test</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col" id="haikuContentModal">
+              <p>Body Test</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col" id="haikuAuthorModal">
+              <p>Author Test</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer" id="onClickModalFooter">
+      <button type="button" class="btn btn-secondary" id="onClickModalCloseButton" data-dismiss="modal">Close</button>
+    </div>
+  </div>
+  </div>
+  </div>
+
   <script type="text/javascript">
-    $("#add-btn").on("click", function(event) {
+
+    $("#add-btn").on("click", function (event) {
       event.preventDefault();
+
       var newPoem = {
         title: $("#title").val().trim(),
         lineA: $("#lineA").val().trim(),
@@ -89,13 +135,36 @@
         category: $("#category").val().trim()
       };
 
+      $("#onClickModal").modal('toggle');
+      //runModal();
+      formClear();
+
       console.log(newPoem);
 
-
       $.post("/api/poems", newPoem)
-        .then(function(data) {
+        .then(function (data) {
           console.log("add.html", data);
-          alert("Adding your haiku...");
+          //alert("Adding your haiku...");
         });
     });
+
+    $("#onClickModalCloseButton").on("click", function (event) {
+      window.location.href = "/";
+    });
+
+    function formClear() {
+      $("#title").val("");
+      $("#lineA").val("");
+      $("#lineB").val("");
+      $("#lineC").val("");
+      $("#author").val("");
+      $("#category").val("Select One");
+    };
+
+    // function runModal() {
+    //   var myModalEvent = $("#onClickModal");
+    //   var myHaikuTitle = $("#title");
+    //   myModalEvent.find("#haikuTitleModal").myHaikuTitle;
+    // };
+
   </script>
