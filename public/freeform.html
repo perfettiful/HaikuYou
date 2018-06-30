@@ -19,6 +19,7 @@
   <!--Start Main Nav Bar-->
   <ul class="nav justify-content-center">
     <li class="nav-item">
+<<<<<<< HEAD:public/freeform.html
       <a class="nav-link" href="home.html">Home</a>
     </li>
     <li class="nav-item">
@@ -29,6 +30,15 @@
     </li>
     <li class="nav-item">
         <a class="nav-link" href="read.html">Read</a>
+=======
+      <a class="nav-link active" href="/">Home</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/about">About</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/compose">Compose</a>
+>>>>>>> 42480325fa5d7bd90d4cbd54c5130d82e711c2b3:views/html/freeform.html
     </li>
   </ul>
   <!--End Main Nav Bar-->
@@ -40,6 +50,13 @@
       <hr>
       <a href="/">
         <button class="btn btn-danger btn-lg">
+<<<<<<< HEAD:public/freeform.html
+=======
+          <span class="fa fa-eye"></span> View Haikus!</button>
+      </a>
+      <a href="/">
+        <button class="btn btn-danger btn-lg">
+>>>>>>> 42480325fa5d7bd90d4cbd54c5130d82e711c2b3:views/html/freeform.html
           <span class="fa fa-eye"></span> Home</button>
       </a>
       <a href="/read">
@@ -83,6 +100,7 @@
               </div>
               <div class="form-group">
                 <label for="role">Poem Category</label>
+<<<<<<< HEAD:public/freeform.html
                 <select class="custom-select" id="category">
                   <option selected>Select One</option>
                   <option value="Action">Action</option>
@@ -90,6 +108,15 @@
                   <option value="Nature">Nature</option>
                   <option value="Romantic">Romantic</option>
                   <option value="NSFW">NSFW</option>
+=======
+                <input type="text" class="form-control" id="category">
+                <select class="custom-select" id="category">
+                  <option selected>Select One</option>
+                  <option value="1">Humor</option>
+                  <option value="2">Romantic</option>
+                  <option value="4">Action</option>
+                  <option value="5">NSFW</option>
+>>>>>>> 42480325fa5d7bd90d4cbd54c5130d82e711c2b3:views/html/freeform.html
                 </select>
               </div>
 
@@ -132,10 +159,21 @@
       console.log(newPoem);
 
 
+<<<<<<< HEAD:public/freeform.html
       $.post("/api/poems", newPoem)
         .then(function (data) {
           console.log("add.html", data);
           alert("Adding your haiku...");
+=======
+      $.post("/api/poems", newCharacter)
+        .then(function (data) {
+          $.post("/api/poems", newPoem)
+            .then(function (data) {
+              console.log("add.html", data);
+              alert("Adding your haiku...");
+            });
+>>>>>>> 42480325fa5d7bd90d4cbd54c5130d82e711c2b3:views/html/freeform.html
         });
     });
+
   </script>

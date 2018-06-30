@@ -1,7 +1,11 @@
 {
   "development": {
     "username": "root",
+<<<<<<< HEAD
     "password": "",
+=======
+    "password": "root",
+>>>>>>> 42480325fa5d7bd90d4cbd54c5130d82e711c2b3
     "database": "haiku_db",
     "host": "localhost",
     "port": 3306,
@@ -9,7 +13,11 @@
   },
   "test": {
     "username": "root",
+<<<<<<< HEAD
     "password": null,
+=======
+    "password": "root",
+>>>>>>> 42480325fa5d7bd90d4cbd54c5130d82e711c2b3
     "database": "database_test",
     "host": "localhost",
     "port": 3306,
@@ -17,7 +25,11 @@
   },
   "production": {
     "username": "root",
+<<<<<<< HEAD
     "password": null,
+=======
+    "password": "root",
+>>>>>>> 42480325fa5d7bd90d4cbd54c5130d82e711c2b3
     "database": "database_production",
     "host": "localhost",
     "port": 3306,

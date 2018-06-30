@@ -87,7 +87,11 @@
                         var poem = $("<div class='card'>");
                         var poemNumber = i + 1;
                         poem.attr("id", "poem" + i + 1);
+<<<<<<< HEAD:public/read.html
                         poem.append("<div class='card-header>" + chosen.poem_title + "</div><div class='card-body'><blockquote class='blockquote mb-0'><p>" + chosen.poem_text + "</p><footer class='blockquote-footer'>" + chosen.poem_author + "</footer></blockquote></div>");
+=======
+                        poem.append("<div class='card-header'>" + chosen.poem_title + "</div><div class='card-body'><blockquote class='blockquote mb-0'><p>" + chosen.poem_text + "</p><footer class='blockquote-footer'>" + chosen.poem_author + "</footer></blockquote></div>");
+>>>>>>> 42480325fa5d7bd90d4cbd54c5130d82e711c2b3:views/html/read.html
                         $("#poem-spot").append(poem);
                         console.log(poem);
                     }
