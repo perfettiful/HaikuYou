@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
+  <link rel="icon" type="image/png" href="assets/images/favicon.ico">
   <title>Haiku You</title>
   <!-- Latest compiled and minified CSS & JS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
@@ -10,14 +12,40 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
 </head>
+
 <body>
+
+  <!--Start Main Nav Bar-->
+  <ul class="nav justify-content-center">
+    <li class="nav-item">
+      <a class="nav-link active" href="/">Home</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/about">About</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/compose">Compose</a>
+    </li>
+  </ul>
+  <!--End Main Nav Bar-->
 
   <div class="container">
     <div class="jumbotron">
       <h1>Haiku You</h1>
       <h3>Japanese poetry for All!</h3>
       <hr>
-      <a href="/"><button class="btn btn-danger btn-lg"><span class="fa fa-eye"></span> View Haikus!</button></a>
+      <a href="/">
+        <button class="btn btn-danger btn-lg">
+          <span class="fa fa-eye"></span> View Haikus!</button>
+      </a>
+      <a href="/">
+        <button class="btn btn-danger btn-lg">
+          <span class="fa fa-eye"></span> Home</button>
+      </a>
+      <a href="/read">
+        <button class="btn btn-danger btn-lg">
+          <span class="fa fa-eye"></span> View Haikus!</button>
+      </a>
     </div>
     <div class="row">
 
@@ -25,7 +53,9 @@
 
         <div class="panel panel-default">
           <div class="panel-heading">
-            <h3 class="panel-title"><strong>Add Your Poem</strong></h3>
+            <h3 class="panel-title">
+              <strong>Add Your Poem</strong>
+            </h3>
           </div>
           <div class="panel-body">
             <form method="POST" role="form">
@@ -54,12 +84,20 @@
               <div class="form-group">
                 <label for="role">Poem Category</label>
                 <input type="text" class="form-control" id="category">
+                <select class="custom-select" id="category">
+                  <option selected>Select One</option>
+                  <option value="1">Humor</option>
+                  <option value="2">Romantic</option>
+                  <option value="4">Action</option>
+                  <option value="5">NSFW</option>
+                </select>
               </div>
 
             </form>
             <br>
             <div class="text-right">
-              <button type="submit" class="btn btn-primary btn-md" id="add-btn"><span class="fa fa-leaf"></span> Submit </button>
+              <button type="submit" class="btn btn-primary btn-md" id="add-btn">
+                <span class="fa fa-leaf"></span> Submit </button>
             </div>
           </div>
         </div>
@@ -69,7 +107,7 @@
   </div>
 
   <script type="text/javascript">
-    $("#add-btn").on("click", function(event) {
+    $("#add-btn").on("click", function (event) {
       event.preventDefault();
       var newPoem = {
         title: $("#title").val().trim(),
@@ -82,9 +120,13 @@
 
 
       $.post("/api/poems", newCharacter)
-        .then(function(data) {
-          console.log("add.html", data);
-          alert("Adding your haiku...");
+        .then(function (data) {
+          $.post("/api/poems", newPoem)
+            .then(function (data) {
+              console.log("add.html", data);
+              alert("Adding your haiku...");
+            });
         });
     });
+
   </script>
