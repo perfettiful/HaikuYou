@@ -1,0 +1,125 @@
+/*------------------------------------------------------------------
+[Table of contents]
+
+1. Typography
+2. Background Color & Color Classes
+3. Section Padding
+4. Header Styling
+5. Header Logo
+6. Header Navigation
+7. Header Buttons, Dropdowns & Icons
+8. Auxiliary Navigation
+9. Title Areas
+10. Slider & Parallax
+11. Lightbox
+12. Preloaders
+13. Rollovers
+14. Homepage
+15. About Pages
+16. Contact Pages
+17. Project Pages
+18. Pagination
+19. Fullscreen Pages
+20. Blog Pages
+21. Form Elements
+22. Social Lists
+23. Footer
+24. Sidebar
+25. Dividers
+26. Media Element Player
+27. Component Styling
+28. Resolution Media Queries
+
+-------------------------------------------------------------------*/
+
+/*------------------------------------------------------------------
+[1. Typography]
+*/
+
+body{
+	letter-spacing: 0;
+	font-weight: 400;
+	font-size: 1.4rem;
+	line-height: 1.8;
+	color: #666;
+}
+body, 
+input, 
+textarea,
+select,
+{
+	font-family: 'Inconsolata', 'Helvetica Neue', sans-serif;
+}
+h1, 
+h2, 
+h3, 
+h4, 
+h5, 
+h6,
+button,
+.button,
+.nav > ul > li > a{
+	font-family: 'Roboto Condensed', 'Helvetica Neue', sans-serif;
+}
+
+/* Titles */
+h1,.h1,
+h2,.h2,
+h3,.h3,
+h4,.h4,
+h5,.h5,
+h6,.h6{
+	line-height: 1;
+	font-weight: 300;
+	text-transform: none;
+	color: #222;
+}
+h1 a:hover,
+h2 a:hover,
+h3 a:hover,
+h4 a:hover,
+h5 a:hover,
+h6 a:hover{
+	color: #5bd9b3;
+}
+
+/* Widget Titles */
+.footer .widget-title, 
+.footer .widget-title a{
+	font-size: 1.4rem;
+	letter-spacing: 0;
+	font-weight: 400;
+	text-transform: none;
+	color: #fff;
+}
+.footer-light .widget-title, 
+.footer-light .widget-title a{
+	color: #222;
+}
+
+/* Link Colors */
+a, 
+p a,
+.box a:not(.button){
+	color: #5bd9b3;
+}
+
+a:hover,
+li:hover, 
+.active
+{
+	color: #3e977c;
+}
+
+blockquote{
+	font-size: 2rem;
+	font-weight: 400;
+}
+
+/*------------------------------------------------------------------
+[2. Background Color & Color Classes]
+*/
+
+body{
+	background-color: #fff;
+}
