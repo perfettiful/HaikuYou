@@ -2,13 +2,23 @@
 <html lang="en">
 
 <head>
+
   <meta charset="UTF-8">
-  <title>Haiku You</title>
-  <!-- Latest compiled and minified CSS & JS -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-  <script src="https://code.jquery.com/jquery.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Haiku You - Compose</title>
+
+  <link rel="shortcut icon" href="assets/images/hy.jpg">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4"
+    crossorigin="anonymous">
+
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
+    crossorigin="anonymous"></script>
+
 
 </head>
 
@@ -97,35 +107,45 @@
         </div>
         <div class="modal-body" id="onClickModalBody">
           <div class="row">
-            <div class="col-md-4 offset-md-4" id="haikuTitleModal">
-                <p>Body Test</p>
+            <div class="col-md-4 offset-md-4 mb-3" id="haikuTitleModal">
+              <p></p>
             </div>
           </div>
           <div class="row">
-            <div class="col" id="haikuContentModal">
-              <p>Body Test</p>
+            <div class="col-md-12" id="haikuContentModalA">
+              <p></p>
             </div>
           </div>
           <div class="row">
-            <div class="col" id="haikuAuthorModal">
-              <p>Author Test</p>
+            <div class="col-md-12" id="haikuContentModalB">
+              <p></p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12" id="haikuContentModalC">
+              <p></p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12 mt-3" id="haikuAuthorModal">
+              <p></p>
             </div>
           </div>
         </div>
+        <div class="modal-footer" id="onClickModalFooter">
+          <button type="button" class="btn btn-secondary" id="onClickModalCloseButton" data-dismiss="modal">Close</button>
+        </div>
       </div>
     </div>
-    <div class="modal-footer" id="onClickModalFooter">
-      <button type="button" class="btn btn-secondary" id="onClickModalCloseButton" data-dismiss="modal">Close</button>
-    </div>
-  </div>
-  </div>
   </div>
 
   <script type="text/javascript">
 
+    //onclick function
     $("#add-btn").on("click", function (event) {
       event.preventDefault();
 
+      //full haiku variable
       var newPoem = {
         title: $("#title").val().trim(),
         lineA: $("#lineA").val().trim(),
@@ -135,23 +155,42 @@
         category: $("#category").val().trim()
       };
 
+      //modal display variables
+      var modalHaikuTitleModal = $("#title").val().trim();
+      var modalHaikuContentModalA = $("#lineA").val().trim();
+      var modalHaikuContentModalB = $("#lineB").val().trim();
+      var modalHaikuContentModalC = $("#lineC").val().trim();
+      var modalHaikuAuthorModal = $("#author").val().trim();
+
+      //modal work
       $("#onClickModal").modal('toggle');
-      //runModal();
+      $("#haikuTitleModal").html(modalHaikuTitleModal);
+      $("#haikuContentModalA").html(modalHaikuContentModalA);
+      $("#haikuContentModalB").html(modalHaikuContentModalB);
+      $("#haikuContentModalC").html(modalHaikuContentModalC);
+      $("#haikuAuthorModal").html(modalHaikuAuthorModal);
+
+      //clear form fuction call
       formClear();
 
+      //console haiku
       console.log(newPoem);
 
+      //post haiku to api
       $.post("/api/poems", newPoem)
         .then(function (data) {
           console.log("add.html", data);
           //alert("Adding your haiku...");
         });
+
     });
 
+    //redirect to homepage
     $("#onClickModalCloseButton").on("click", function (event) {
       window.location.href = "/";
     });
 
+    //clear form function
     function formClear() {
       $("#title").val("");
       $("#lineA").val("");
@@ -160,11 +199,5 @@
       $("#author").val("");
       $("#category").val("Select One");
     };
-
-    // function runModal() {
-    //   var myModalEvent = $("#onClickModal");
-    //   var myHaikuTitle = $("#title");
-    //   myModalEvent.find("#haikuTitleModal").myHaikuTitle;
-    // };
 
   </script>
