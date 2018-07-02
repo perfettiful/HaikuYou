@@ -4,6 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="assets/css/style.css">
+
     
     <title>Haiku You - Read</title>
     
@@ -22,103 +25,114 @@
 <body>
 
     <!--Start Main Nav Bar-->
-    <ul class="nav justify-content-center">
-            <li class="nav-item">
-              <a class="nav-link active" href="/">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/about">About</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/compose">Compose</a>
-            </li>
-          </ul>
+    <nav class="navbar navbar-expand-lg bg-light navbar-right">
+        <a class="navbar-brand nav-link" href="/">
+            <img src="../public/assets/images/favicon.ico" width="30" height="30" class="d-inline-block align-top" alt=""> HaikuYou
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02"
+            aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+            <ul class="nav navbar-nav mr-auto mt-2 mt-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" href="/about">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/compose">Compose</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="/read">Read</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
     <!--End Main Nav Bar-->
 
     <!--Start Page Body-->
-    <div class="nav"></div>
-    <div class="container">
-        <div id="search-bar" class="row">
+    <div class="container main-content">
+        <div id="search">
             <h2>View poems by type</h2>
-            <div class="row">
-                <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
-                        aria-expanded="false">
-                        Category
-                    </button>
-                    <div class="dropdown-menu" id="categoryDropDown" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="#">Action</a>
-                    </div>
+            <form id="search-bar">
+
+                <div class="form-group">
+                    <label for="category">Poem Category</label>
+                    <select class="form-control" id="category">
+                        <option selected>Select One</option>
+                        <option value="Action">Action</option>
+                        <option value="Humor">Humor</option>
+                        <option value="Nature">Nature</option>
+                        <option value="Romantic">Romantic</option>
+                        <option value="NSFW">NSFW</option>
+                    </select>
                 </div>
-                <fieldset>
+
+                <!-- <fieldset>
                     <label for="date">Date</label>
-                    <input type="date" id="dateSearch" name="date"/>
-                </fieldset>
-                <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
-                        aria-expanded="false">
-                        Author
-                    </button>
-                    <div class="dropdown-menu"
-                    id="authorDropDown" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="#">Action</a>
-                    </div>
+                    <input type="date" id="dateSearch" name="date" />
+                </fieldset> -->
+
+
+                <div class="form-group">
+                    <label for="authorDropDown">Poem Author</label>
+                    <select class="form-control" id="authorDropDown">
+                        <option selected>Select One</option>
+                    </select>
                 </div>
-            </div>
+
+                <button type="submit" class="btn btn-primary" id="submit">Submit</button>
+
+            </form>
         </div>
+
+        <div id="poem-spot" class="row"></div>
     </div>
-    <div id="poem-spot" class="row"></div>
 
     <!--End Page Body-->
-
-    <script type="text/javascript">
-
-        //creates the poem elements and appends each of the results to the poem-spot div
-        function displayPoems() {
-            $.ajax({ url: "/", method: "GET" })
-                .done(function (data) {
-                    console.log(data);
-                    for (var i = 0; i < data.length; i++) {
-                        var chosen = data[i];
-                        var poem = $("<div class='poem-blob'>");
-                        var poemNumber = i + 1;
-                        poem.attr("id", "poem" + i + 1);
-                        poem.append("<h2>" + chosen.poem_title + "</h2><p>" + chosen.poem_text + "</p><h4>" + chosen.poem_author);
-                        $("#poem-spot").append(poem);
-                        console.log(poem);
-                    }
-                });
-        }
-        displayPoems();
-
-        //adds categories to the dropdown
-        function addCategories() {
-            $.ajax({ url: "/", method: "GET " }).done(function (data) {
-                console.log(data);
-                for (var j = 0; j < data.length; j++) {
-                    var option = data[j];
-                    var choice = $("<a class='dropdown-item'>" + option.category + "</a>");
-                    $("#categoryDropDown").append(choice);
-                    console.log(choice);
-                }
-            });
-        }
-        addCategories();
-
-        //adds authors to the dropdown
-        function addAuthors() {
-            $.ajax({ url: "/", method: "GET " }).done(function (data) {
-                console.log(data);
-                for (var z = 0; z < data.length; z++) {
-                    var option = data[z];
-                    var person = $("<a class='dropdown-item'>" + option.poem_author + "</a>");
-                    $("#authorDropDown").append(person);
-                    console.log(choice);
-                }
-            });
-        }
-        addAuthors();
-    </script>
 </body>
+<footer class="footer">
+    <div class="container">
+        <div class="content has-text-centered">
+            <p>
+                <small>© Copyright 2018, HaikuYou</small>
+            </p>
+        </div>
+    </div>
+</footer>
+
+<script type="text/javascript">
+
+    //creates the poem elements and appends each of the results to the poem-spot div
+    function displayPoems() {
+        $.ajax({ url: "/api/poems", method: "GET" })
+            .done(function (data) {
+                console.log(data);
+                for (var i = 0; i < data.length; i++) {
+                    var chosen = data[i];
+                    var poem = $("<div class='card'>");
+                    var poemNumber = i + 1;
+                    poem.attr("id", "poem" + i + 1);
+                    poem.append("<div class='card-header>" + chosen.poem_title + "</div><div class='card-body'><blockquote class='blockquote mb-0'><p>" + chosen.poem_text + "</p><footer class='blockquote-footer'>" + chosen.poem_author + "</footer></blockquote></div>");
+                    $("#poem-spot").append(poem);
+                    console.log(poem);
+                }
+            });
+    }
+    $(document).on('click', '#submit', displayPoems());
+
+    //adds authors to the dropdown
+    function addAuthors() {
+        $.ajax({ url: "/", method: "GET " }).done(function (data) {
+            console.log(data);
+            for (var z = 0; z < data.length; z++) {
+                var option = data[z].poem_author;
+                var person = $("<option value='" + option + "'>" + option.poem_author + "</option>");
+                $("#authorDropDown").append(person);
+                console.log(choice);
+            }
+        });
+    }
+    addAuthors();
+</script>
 
 </html>

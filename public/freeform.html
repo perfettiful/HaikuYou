@@ -4,6 +4,7 @@
 <head>
 
   <meta charset="UTF-8">
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>Haiku You - Compose</title>
@@ -19,25 +20,34 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
     crossorigin="anonymous"></script>
 
-
 </head>
 
 <body>
 
-  <div class="container">
-    <div class="jumbotron">
-      <h1>Haiku You</h1>
-      <h3>Japanese poetry for All!</h3>
-      <hr>
-      <a href="/">
-        <button class="btn btn-danger btn-lg">
-          <span class="fa fa-eye"></span> Home</button>
-      </a>
-      <a href="/read">
-        <button class="btn btn-danger btn-lg">
-          <span class="fa fa-eye"></span> View Haikus!</button>
-      </a>
-    </div>
+
+  <!--Start Main Nav Bar-->
+  <ul class="nav justify-content-center">
+     <!--Navbar Logo linked to Favicon-->
+     <li class="nav-item">
+        <a class="navbar-brand nav-link" href="/">
+            <img src="../public/assets/images/favicon.ico" width="30" height="30" class="d-inline-block align-top" alt=""> HaikuYou
+        </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/about">About</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link active" href="/compose">Compose</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/read">Read</a>
+    </li>
+  </ul>
+  <!--End Main Nav Bar-->
+
+  <div class="container main-content">
+    
+
     <div class="row">
 
       <div class="col-lg-12">
@@ -97,6 +107,15 @@
       </div>
     </div>
   </div>
+  <footer class="footer">
+      <div class="container">
+          <div class="content has-text-centered">
+              <p>
+                  <small>© Copyright 2018, Haiku You</small>
+              </p>
+          </div>
+      </div>
+  </footer>
 
   <!--onClick Modal -->
   <div class="modal fade" id="onClickModal" tabindex="-1" role="dialog" aria-labelledby="onClickeModalTitle" aria-hidden="true">
@@ -142,6 +161,7 @@
   <script type="text/javascript">
 
     //onclick function
+
     $("#add-btn").on("click", function (event) {
       event.preventDefault();
 
