@@ -33,21 +33,38 @@
       1: [
         function(require, module, exports) {
           "use strict";
-  
           var syllable = require("syllable");
+          console.log("Syllable Loaded!!")
             
           //--------------Input Selector-------------//
-          var $input = document.getElementsByTagName("textarea")[0];
+          //var $inputA = document.getElementById("lineA");
           
           //--------------Output Selector-------------//
-          var $output = document.getElementsByTagName("output")[0];
+          var $outputA = document.getElementByTagName("output");
+          console.log($outputA);
+            
+          //--------------Input Selector-------------//
+          var $inputB = document.getElementsByTagName("textarea")[1];
+          
+          //--------------Output Selector-------------//
+          var $outputB = document.getElementsByTagName("output")[1];
+            
+          //--------------Input Selector-------------//
+          var $inputC = document.getElementsByTagName("textarea")[2];
+          
+          //--------------Output Selector-------------//
+          var $outputC = document.getElementsByTagName("output")[2];
   
-          $input.addEventListener("input", oninputchange);
+          $inputA.addEventListener("input", oninputchange);
+          //$inputB.addEventListener("input", oninputchange);
+          //$inputC.addEventListener("input", oninputchange);
   
           oninputchange();
+          //oninputchange($inputB,$outputB);
+          //oninputchange($inputC,$outputC);
   
           function oninputchange() {
-            $output.textContent = $input.value
+            $outputA.textContent = $inputA.value
               .split(/\s+/g)
               .map(syllable)
               .reduce(sum);
