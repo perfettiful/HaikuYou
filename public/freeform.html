@@ -18,52 +18,26 @@
 
   <!--Start Main Nav Bar-->
   <ul class="nav justify-content-center">
-    <li class="nav-item">
-<<<<<<< HEAD:public/freeform.html
-      <a class="nav-link" href="home.html">Home</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="about.html">About</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link active" href="freeform.html">Compose</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="read.html">Read</a>
-=======
-      <a class="nav-link active" href="/">Home</a>
+     <!--Navbar Logo linked to Favicon-->
+     <li class="nav-item">
+        <a class="navbar-brand nav-link" href="/">
+            <img src="../public/assets/images/favicon.ico" width="30" height="30" class="d-inline-block align-top" alt=""> HaikuYou
+        </a>
     </li>
     <li class="nav-item">
       <a class="nav-link" href="/about">About</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="/compose">Compose</a>
->>>>>>> 42480325fa5d7bd90d4cbd54c5130d82e711c2b3:views/html/freeform.html
+      <a class="nav-link active" href="/compose">Compose</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/read">Read</a>
     </li>
   </ul>
   <!--End Main Nav Bar-->
 
-  <div class="container">
-    <div class="jumbotron">
-      <h1>Haiku You</h1>
-      <h3>Japanese poetry for All!</h3>
-      <hr>
-      <a href="/">
-        <button class="btn btn-danger btn-lg">
-<<<<<<< HEAD:public/freeform.html
-=======
-          <span class="fa fa-eye"></span> View Haikus!</button>
-      </a>
-      <a href="/">
-        <button class="btn btn-danger btn-lg">
->>>>>>> 42480325fa5d7bd90d4cbd54c5130d82e711c2b3:views/html/freeform.html
-          <span class="fa fa-eye"></span> Home</button>
-      </a>
-      <a href="/read">
-        <button class="btn btn-danger btn-lg">
-          <span class="fa fa-eye"></span> View Haikus!</button>
-      </a>
-    </div>
+  <div class="container main-content">
+    
     <div class="row">
 
       <div class="col-lg-12">
@@ -100,7 +74,6 @@
               </div>
               <div class="form-group">
                 <label for="role">Poem Category</label>
-<<<<<<< HEAD:public/freeform.html
                 <select class="custom-select" id="category">
                   <option selected>Select One</option>
                   <option value="Action">Action</option>
@@ -108,15 +81,6 @@
                   <option value="Nature">Nature</option>
                   <option value="Romantic">Romantic</option>
                   <option value="NSFW">NSFW</option>
-=======
-                <input type="text" class="form-control" id="category">
-                <select class="custom-select" id="category">
-                  <option selected>Select One</option>
-                  <option value="1">Humor</option>
-                  <option value="2">Romantic</option>
-                  <option value="4">Action</option>
-                  <option value="5">NSFW</option>
->>>>>>> 42480325fa5d7bd90d4cbd54c5130d82e711c2b3:views/html/freeform.html
                 </select>
               </div>
 
@@ -159,20 +123,10 @@
       console.log(newPoem);
 
 
-<<<<<<< HEAD:public/freeform.html
       $.post("/api/poems", newPoem)
         .then(function (data) {
           console.log("add.html", data);
           alert("Adding your haiku...");
-=======
-      $.post("/api/poems", newCharacter)
-        .then(function (data) {
-          $.post("/api/poems", newPoem)
-            .then(function (data) {
-              console.log("add.html", data);
-              alert("Adding your haiku...");
-            });
->>>>>>> 42480325fa5d7bd90d4cbd54c5130d82e711c2b3:views/html/freeform.html
         });
     });
 
