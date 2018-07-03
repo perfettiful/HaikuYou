@@ -25,46 +25,24 @@ module.exports = function(app) {
 
   // POST route for creating a poem using the data on req.body
   app.post("/api/poems", function(req, res, err) {
+
     // validating syllables
 
-    // first line
-    if (syllable(req.body.lineA) === 5) {
-      var lineA_validated = req.body.lineA
-    }
+    var syllableSum = (syllable(req.body.lineA) + syllable(req.body.lineB) + syllable(req.body.lineC))
+    console.log(syllableSum);
 
-    if (syllable(req.body.lineA) != 5) {
-      res.status(500)
-      res.render('error', { error: err })
+    if (syllableSum != 17) {
+      return res.status(500).end();
+
       console.log("Check your validation!");
-    }
 
-    // second line
-    if (syllable(req.body.lineB) === 7) {
-      var lineB_validated = req.body.lineB
-    }
-
-    if (syllable(req.body.lineB) != 7) {
-      res.status(500)
-      res.render('error', { error: err })
-      console.log("Check your validation!");
-    }
-
-    // third line
-    if (syllable(req.body.lineC) === 5) {
-      var lineC_validated = req.body.lineC
-    }
-
-    if (syllable(req.body.lineC) != 5) {
-      res.status(500)
-      res.render('error', { error: err })
-      console.log("Check your validation!");
     }
 
     db.Haiku.create({
       haiku_title: req.body.title,
-      haiku_lineA: lineA_validated,
-      haiku_lineB: lineB_validated,
-      haiku_lineC: lineC_validated,
+      haiku_lineA: req.body.lineA,
+      haiku_lineB: req.body.lineB,
+      haiku_lineC: req.body.lineC,
       haiku_author: req.body.author,
       haiku_category: req.body.category
     }).then(function(dbPoems) {

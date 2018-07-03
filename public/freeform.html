@@ -198,7 +198,9 @@
 
       //post haiku to api
       $.post("/api/poems", newPoem)
-        .then(function (data) {
+        .fail(function() {
+          alert("error");
+        }).then(function (data) {
           console.log("add.html", data);
           //alert("Adding your haiku...");
         });
