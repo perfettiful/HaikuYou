@@ -24,7 +24,7 @@ module.exports = function(app) {
   });
 
   // POST route for creating a poem using the data on req.body
-  app.post("/api/poems", function(req, res) {
+  app.post("/api/poems", function(req, res, err) {
     // validating syllables
 
     // first line
@@ -33,6 +33,8 @@ module.exports = function(app) {
     }
 
     if (syllable(req.body.lineA) != 5) {
+      res.status(500)
+      res.render('error', { error: err })
       console.log("Check your validation!");
     }
 
@@ -42,6 +44,8 @@ module.exports = function(app) {
     }
 
     if (syllable(req.body.lineB) != 7) {
+      res.status(500)
+      res.render('error', { error: err })
       console.log("Check your validation!");
     }
 
@@ -51,6 +55,8 @@ module.exports = function(app) {
     }
 
     if (syllable(req.body.lineC) != 5) {
+      res.status(500)
+      res.render('error', { error: err })
       console.log("Check your validation!");
     }
 
