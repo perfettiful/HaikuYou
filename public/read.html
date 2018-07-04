@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="assets/css/style.css">
 
 
-    <title>Haiku You - Read</title>
+    <title>HaikuYou - Read</title>
 
     <link rel="shortcut icon" href="assets/images/hy.jpg">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4"
@@ -111,7 +111,7 @@
                     var poem = $("<div class='card'>");
                     var poemNumber = i + 1;
                     poem.attr("id", "poem" + i + 1);
-                    poem.append("<div class='card-header>" + chosen.poem_title + "</div><div class='card-body'><blockquote class='blockquote mb-0'><p>" + chosen.poem_text + "</p><footer class='blockquote-footer'>" + chosen.poem_author + "</footer></blockquote></div>");
+                    poem.append("<div class='card'><div class='card-header'>" + chosen.haiku_title + "</div><div class='card-text'><blockquote class='blockquote mb-0'><p>" + chosen.haiku_lineA + "</p><p>" + chosen.haiku_lineB + "</p><p>" + chosen.haiku_lineC + "</p><footer class='blockquote-footer'>" + chosen.haiku_author + "</footer></blockquote></div></div>");
                     $("#poem-spot").append(poem);
                     console.log(poem);
                 }
@@ -121,11 +121,11 @@
 
     //adds authors to the dropdown
     function addAuthors() {
-        $.ajax({ url: "/", method: "GET " }).done(function (data) {
+        $.ajax({ url: "/api/poems", method: "GET " }).done(function (data) {
             console.log(data);
             for (var z = 0; z < data.length; z++) {
-                var option = data[z].poem_author;
-                var person = $("<option value='" + option + "'>" + option.poem_author + "</option>");
+                var option = data[z].haiku_author;
+                var person = $("<option value='" + option + "'>" + option.haiku_author + "</option>");
                 $("#authorDropDown").append(person);
                 console.log(choice);
             }

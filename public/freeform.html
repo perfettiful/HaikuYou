@@ -7,7 +7,7 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Haiku You - Compose</title>
+  <title>HaikuYou - Compose</title>
 
   <link rel="shortcut icon" href="assets/images/hy.jpg">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4"
@@ -55,7 +55,7 @@
         <div class="panel panel-default">
           <div class="panel-heading">
             <h3 class="panel-title">
-              <strong>Add Your Poem</strong>
+              <strong>Add Your Haiku</strong>
             </h3>
           </div>
           <div class="panel-body">
@@ -201,7 +201,7 @@
         .fail(function() {
           alert("error");
         }).then(function (data) {
-          console.log("add.html", data);
+          console.log("Added Haiku:", data);
           //alert("Adding your haiku...");
         });
 
@@ -209,7 +209,7 @@
 
     //redirect to homepage
     $("#onClickModalCloseButton").on("click", function (event) {
-      window.location.href = "/";
+      window.location.href = "/read";
     });
 
     //clear form function
