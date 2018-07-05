@@ -51,10 +51,22 @@ module.exports = function(app) {
   });
 
   // GET route for getting poems by category
-  app.get("/api/poems/:category", function(req, res) {
+  app.get("/api/poems/category/:category", function(req, res) {
     db.Haiku.findAll({
       where: {
         haiku_category: req.params.category
+      }
+    })
+      .then(function(dbPoems) {
+        res.json(dbPoems);
+      });
+  });
+
+  // GET route for getting poems by author
+  app.get("/api/poems/author/:author", function(req, res) {
+    db.Haiku.findAll({
+      where: {
+        haiku_author: req.params.author
       }
     })
       .then(function(dbPoems) {
