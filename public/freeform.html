@@ -79,6 +79,11 @@
                 <label for="author">Your Pen Name</label>
                 <input type="text" class="form-control" id="author">
               </div>
+              <div class="random-name">
+              <button type="button" class="btn btn-success" id="pen-name-btn">Generate Random Name</button>
+              <br><br>
+              <div class="pen-name"></div>
+              </div>
               <div class="form-group">
                 <label for="role">Poem Category</label>
                 <select class="custom-select" id="category">
@@ -178,30 +183,27 @@
     //console haiku
     console.log(newPoem);
 
-    //modal display variables
-    var modalHaikuTitleModal = $("#title").val().trim();
-    var modalHaikuContentModalA = $("#lineA").val().trim();
-    var modalHaikuContentModalB = $("#lineB").val().trim();
-    var modalHaikuContentModalC = $("#lineC").val().trim();
-    var modalHaikuAuthorModal = $("#author").val().trim();
-
-    //modal work
-    $("#onClickModal").modal('toggle');
-    $("#haikuTitleModal").html(modalHaikuTitleModal);
-    $("#haikuContentModalA").html(modalHaikuContentModalA);
-    $("#haikuContentModalB").html(modalHaikuContentModalB);
-    $("#haikuContentModalC").html(modalHaikuContentModalC);
-    $("#haikuAuthorModal").html(modalHaikuAuthorModal);
-
-    //clear form fuction call
-    formClear();
-
     //post haiku to api
     $.post("/api/poems", newPoem)
+      //if syllables do not equal 17, alert with error message
       .fail(function () {
-        alert("error");
+        alert("You do not have 17 syllables. Check your haiku!");
       }).then(function (data) {
-        console.log("Added Haiku:", data);
+        //if the syllables do equal 17, display the modal
+        //modal display variables
+        var modalHaikuTitleModal = $("#title").val().trim();
+        var modalHaikuContentModalA = $("#lineA").val().trim();
+        var modalHaikuContentModalB = $("#lineB").val().trim();
+        var modalHaikuContentModalC = $("#lineC").val().trim();
+        var modalHaikuAuthorModal = $("#author").val().trim();
+
+        //modal work
+        $("#onClickModal").modal('toggle');
+        $("#haikuTitleModal").html(modalHaikuTitleModal);
+        $("#haikuContentModalA").html(modalHaikuContentModalA);
+        $("#haikuContentModalB").html(modalHaikuContentModalB);
+        $("#haikuContentModalC").html(modalHaikuContentModalC);
+        $("#haikuAuthorModal").html(modalHaikuAuthorModal);
         //alert("Adding your haiku...");
       });
 
@@ -221,5 +223,21 @@
     $("#author").val("");
     $("#category").val("Select One");
   };
+
+  //button validation for random pen name generator
+  $("#pen-name-btn").on("click", function(event) {
+    event.preventDefault();
+    //querying API
+    var queryURL = "https://uinames.com/api/?region=united+states";
+
+    $.ajax({
+      url: queryURL,
+      method: "GET"
+    }).then(function(response) {
+      //console.log(response.name + " " + response.surname);
+      $("#author").attr("value", response.name + " " + response.surname);
+    });
+
+  });
 
 </script>
