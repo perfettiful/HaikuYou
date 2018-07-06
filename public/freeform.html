@@ -68,21 +68,31 @@
               </div>
 
               <div class="form-group">
-                <label for="lineA">5-Syllables</label>
+                <label for="lineA">5-Syllables
+                  <span class="badge badge-danger">Count: <outputA text="0"></outputA></span>
+                </label>
                 <input type="text" class="form-control" id="lineA">
               </div>
+
               <div class="form-group">
-                <label for="lineB">7-Syllables</label>
+                <label for="lineB">7-Syllables
+                  <span class="badge badge-danger">Count: <outputB text="0"></outputB></span>
+                </label>
                 <input type="text" class="form-control" id="lineB">
               </div>
+
               <div class="form-group">
-                <label for="lineC">5-Syllables</label>
+                <label for="lineC">5-Syllables
+                  <span class="badge badge-danger">Count: <outputC text="0"></outputC></span>
+                </label>  
                 <input type="text" class="form-control" id="lineC">
               </div>
+
               <div class="form-group">
                 <label for="author">Your Pen Name</label>
                 <input type="text" class="form-control" id="author">
               </div>
+              
               <div class="random-name">
                 <button type="button" class="btn btn-success" id="pen-name-btn">Generate Random Name</button>
                 <br>
@@ -168,6 +178,7 @@
 
 </body>
 
+<script src="./assets/javascript/syllable.js"></script>
 <script type="text/javascript">
 
   //onclick function

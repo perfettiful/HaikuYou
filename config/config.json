@@ -1,17 +1,17 @@
 {
   "development": {
     "username": "root",
-    "password": "root",
+    "password": "",
     "database": "haiku_db",
-    "host": "127.0.0.1",
-    "port": 8889,
+    "host": "localhost",
+    "port": 3306,
     "dialect": "mysql"
   },
   "test": {
     "username": "root",
-    "password": "root",
+    "password": null,
     "database": "database_test",
-    "host": "127.0.0.1",
+    "host": "localhost",
     "port": 3306,
     "dialect": "mysql"
   },
