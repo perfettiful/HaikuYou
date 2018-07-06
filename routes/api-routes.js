@@ -31,6 +31,7 @@ module.exports = function(app) {
     var syllableSum = (syllable(req.body.lineA) + syllable(req.body.lineB) + syllable(req.body.lineC))
     console.log(syllableSum);
 
+    // if syllable total is not equal to 17, return an error
     if (syllableSum != 17) {
       return res.status(500).end();
 
@@ -38,23 +39,39 @@ module.exports = function(app) {
 
     }
 
-    db.Haiku.create({
-      haiku_title: req.body.title,
-      haiku_lineA: req.body.lineA,
-      haiku_lineB: req.body.lineB,
-      haiku_lineC: req.body.lineC,
-      haiku_author: req.body.author,
-      haiku_category: req.body.category
-    }).then(function(dbPoems) {
-      res.json(dbPoems);
-    });
+    // else, if syllable total is exactly 17, create a new poem in the mysql
+    else {
+
+        db.Haiku.create({
+        haiku_title: req.body.title,
+        haiku_lineA: req.body.lineA,
+        haiku_lineB: req.body.lineB,
+        haiku_lineC: req.body.lineC,
+        haiku_author: req.body.author,
+        haiku_category: req.body.category
+      }).then(function(dbPoems) {
+        res.json(dbPoems);
+      });
+    }
   });
 
   // GET route for getting poems by category
-  app.get("/api/poems/:category", function(req, res) {
+  app.get("/api/poems/category/:category", function(req, res) {
     db.Haiku.findAll({
       where: {
         haiku_category: req.params.category
+      }
+    })
+      .then(function(dbPoems) {
+        res.json(dbPoems);
+      });
+  });
+
+  // GET route for getting poems by author
+  app.get("/api/poems/author/:author", function(req, res) {
+    db.Haiku.findAll({
+      where: {
+        haiku_author: req.params.author
       }
     })
       .then(function(dbPoems) {

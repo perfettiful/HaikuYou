@@ -4,17 +4,16 @@
 <head>
 
   <meta charset="UTF-8">
-
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Haiku You - Compose</title>
+  <title>HaikuYou - Compose</title>
 
   <link rel="shortcut icon" href="assets/images/hy.jpg">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4"
     crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/css/style.css">
 
   <script src="https://code.jquery.com/jquery.js"></script>
-
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
     crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
@@ -24,25 +23,27 @@
 
 <body>
 
-
   <!--Start Main Nav Bar-->
-  <ul class="nav justify-content-center">
-     <!--Navbar Logo linked to Favicon-->
-     <li class="nav-item">
-        <a class="navbar-brand nav-link" href="/">
-            <img src="../public/assets/images/favicon.ico" width="30" height="30" class="d-inline-block align-top" alt=""> HaikuYou
-        </a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="/about">About</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link active" href="/compose">Compose</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="/read">Read</a>
-    </li>
-  </ul>
+  <nav class="navbar navbar-expand-lg bg-light navbar-right">
+    <a class="navbar-brand nav-link" href="/">HaikuYou</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02"
+      aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+      <ul class="nav navbar-nav ml-auto mt-2 mt-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" href="/about">About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="/compose">Compose</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/read">Read</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
   <!--End Main Nav Bar-->
 
   <div class="container main-content">
@@ -55,7 +56,7 @@
         <div class="panel panel-default">
           <div class="panel-heading">
             <h3 class="panel-title">
-              <strong>Add Your Poem</strong>
+              <strong>Add Your Haiku</strong>
             </h3>
           </div>
           <div class="panel-body">
@@ -82,6 +83,12 @@
                 <label for="author">Your Pen Name</label>
                 <input type="text" class="form-control" id="author">
               </div>
+              <div class="random-name">
+                <button type="button" class="btn btn-success" id="pen-name-btn">Generate Random Name</button>
+                <br>
+                <br>
+                <div class="pen-name"></div>
+              </div>
               <div class="form-group">
                 <label for="role">Poem Category</label>
                 <select class="custom-select" id="category">
@@ -99,7 +106,7 @@
             <br>
             <div class="text-right">
               <button type="submit" class="btn btn-primary btn-md" id="add-btn">
-                <span class="fa fa-leaf"></span> Submit </button>
+                <span class="fa"></span> Submit </button>
             </div>
           </div>
         </div>
@@ -107,14 +114,15 @@
       </div>
     </div>
   </div>
-  <footer class="footer">
-      <div class="container">
-          <div class="content has-text-centered">
-              <p>
-                  <small>© Copyright 2018, Haiku You</small>
-              </p>
-          </div>
+
+  <footer class="footer main-footer">
+    <div class="container">
+      <div class="content has-text-centered">
+        <p>
+          <small>© Copyright 2018, HaikuYou</small>
+        </p>
       </div>
+    </div>
   </footer>
 
   <!--onClick Modal -->
@@ -158,68 +166,83 @@
     </div>
   </div>
 
-  <script type="text/javascript">
+</body>
 
-    //onclick function
+<script type="text/javascript">
 
-    $("#add-btn").on("click", function (event) {
-      event.preventDefault();
+  //onclick function
 
-      //full haiku variable
-      var newPoem = {
-        title: $("#title").val().trim(),
-        lineA: $("#lineA").val().trim(),
-        lineB: $("#lineB").val().trim(),
-        lineC: $("#lineC").val().trim(),
-        author: $("#author").val().trim(),
-        category: $("#category").val().trim()
-      };
+  $("#add-btn").on("click", function (event) {
+    event.preventDefault();
 
-      //console haiku
-      console.log(newPoem);
-
-      //modal display variables
-      var modalHaikuTitleModal = $("#title").val().trim();
-      var modalHaikuContentModalA = $("#lineA").val().trim();
-      var modalHaikuContentModalB = $("#lineB").val().trim();
-      var modalHaikuContentModalC = $("#lineC").val().trim();
-      var modalHaikuAuthorModal = $("#author").val().trim();
-
-      //modal work
-      $("#onClickModal").modal('toggle');
-      $("#haikuTitleModal").html(modalHaikuTitleModal);
-      $("#haikuContentModalA").html(modalHaikuContentModalA);
-      $("#haikuContentModalB").html(modalHaikuContentModalB);
-      $("#haikuContentModalC").html(modalHaikuContentModalC);
-      $("#haikuAuthorModal").html(modalHaikuAuthorModal);
-
-      //clear form fuction call
-      formClear();
-
-      //post haiku to api
-      $.post("/api/poems", newPoem)
-        .fail(function() {
-          alert("error");
-        }).then(function (data) {
-          console.log("add.html", data);
-          //alert("Adding your haiku...");
-        });
-
-    });
-
-    //redirect to homepage
-    $("#onClickModalCloseButton").on("click", function (event) {
-      window.location.href = "/";
-    });
-
-    //clear form function
-    function formClear() {
-      $("#title").val("");
-      $("#lineA").val("");
-      $("#lineB").val("");
-      $("#lineC").val("");
-      $("#author").val("");
-      $("#category").val("Select One");
+    //full haiku variable
+    var newPoem = {
+      title: $("#title").val().trim(),
+      lineA: $("#lineA").val().trim(),
+      lineB: $("#lineB").val().trim(),
+      lineC: $("#lineC").val().trim(),
+      author: $("#author").val().trim(),
+      category: $("#category").val().trim()
     };
 
-  </script>
+    //console haiku
+    console.log(newPoem);
+
+    //post haiku to api
+    $.post("/api/poems", newPoem)
+      //if syllables do not equal 17, alert with error message
+      .fail(function () {
+        alert("You do not have 17 syllables. Check your haiku!");
+      }).then(function (data) {
+        //if the syllables do equal 17, display the modal
+        //modal display variables
+        var modalHaikuTitleModal = $("#title").val().trim();
+        var modalHaikuContentModalA = $("#lineA").val().trim();
+        var modalHaikuContentModalB = $("#lineB").val().trim();
+        var modalHaikuContentModalC = $("#lineC").val().trim();
+        var modalHaikuAuthorModal = $("#author").val().trim();
+
+        //modal work
+        $("#onClickModal").modal('toggle');
+        $("#haikuTitleModal").html(modalHaikuTitleModal);
+        $("#haikuContentModalA").html(modalHaikuContentModalA);
+        $("#haikuContentModalB").html(modalHaikuContentModalB);
+        $("#haikuContentModalC").html(modalHaikuContentModalC);
+        $("#haikuAuthorModal").html(modalHaikuAuthorModal);
+        //alert("Adding your haiku...");
+      });
+
+  });
+
+  //redirect to homepage
+  $("#onClickModalCloseButton").on("click", function (event) {
+    window.location.href = "/read";
+  });
+
+  //clear form function
+  function formClear() {
+    $("#title").val("");
+    $("#lineA").val("");
+    $("#lineB").val("");
+    $("#lineC").val("");
+    $("#author").val("");
+    $("#category").val("Select One");
+  };
+
+  //button validation for random pen name generator
+  $("#pen-name-btn").on("click", function (event) {
+    event.preventDefault();
+    //querying API
+    var queryURL = "https://uinames.com/api/?region=united+states";
+
+    $.ajax({
+      url: queryURL,
+      method: "GET"
+    }).then(function (response) {
+      //console.log(response.name + " " + response.surname);
+      $("#author").attr("value", response.name + " " + response.surname);
+    });
+
+  });
+
+</script>
