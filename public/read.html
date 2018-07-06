@@ -53,7 +53,7 @@
 
                 <div class="form-group read-select">
                     <label for="category">Poem Category</label>
-                    <select class="form-control" id="category">
+                    <select class="form-control" id="categoryDropDown">
                         <option selected>Select One</option>
                         <option value="Action">Action</option>
                         <option value="Humor">Humor</option>
@@ -62,6 +62,8 @@
                         <option value="NSFW">NSFW</option>
                     </select>
                 </div>
+
+                <button type="submit" class="btn btn-primary" id="categorySubmit">Submit</button>
 
                 <!-- <fieldset>
                     <label for="date">Date</label>
@@ -76,7 +78,7 @@
                     </select>
                 </div>
 
-                <button type="submit" class="btn btn-primary" id="submit">Submit</button>
+                <button type="submit" class="btn btn-primary" id="authorSubmit">Submit</button>
 
             </form>
         </div>
@@ -101,9 +103,28 @@
 
 <script type="text/javascript">
 
+    //category onclick event
+    $("#categorySubmit").on("click", function (event) {
+        event.preventDefault();
+        clearCard();
+        displayHaikuCategory();
+        resetSelection();
+    });
+
+    //author onclick event
+    $("#authorSubmit").on("click", function (event) {
+        event.preventDefault();
+        clearCard();
+        displayHaikuAuthor();
+        resetSelection();
+    });
+
     //creates the poem elements and appends each of the results to the poem-spot div
-    function displayHaiku() {
-        var categoryString = $("#category option:selected").text();
+    function displayHaikuCategory() {
+        var categoryString = $("#categoryDropDown").val();
+        //var url =  "/api/poems/category/" + categoryString;
+        //console.log(url);
+        //var categoryString = $("#categoryDropDown option:selected").text();
         $.ajax({ url: "/api/poems/category/" + categoryString, method: "GET" })
             .done(function (data) {
                 console.log(data);
@@ -119,24 +140,63 @@
             });
     }
 
-    $("#submit").on("click", function (event) {
-        event.preventDefault();
-        displayHaiku();
-    });
+    //creates the poem elements and appends each of the results to the poem-spot div
+    function displayHaikuAuthor() {
+        var authorString = $("#authorDropDown").val();
+        //var url = "/api/poems/author/" + authorString;
+        //console.log(url);
+        //var authorString = $("#authorDropDown option:selected").text();
+        $.ajax({ url: "/api/poems/author/" + authorString, method: "GET" })
+            .done(function (data) {
+                console.log(data);
+                for (var i = 0; i < data.length; i++) {
+                    var chosen = data[i];
+                    var poem = $("<div class='card'>");
+                    var poemNumber = i + 1;
+                    poem.attr("id", "poem" + i + 1);
+                    poem.append("<div class='card-header'>" + chosen.haiku_title + "</div><div class='card-text'><blockquote class='blockquote mb-0'><p>" + chosen.haiku_lineA + "</p><p>" + chosen.haiku_lineB + "</p><p>" + chosen.haiku_lineC + "</p><footer class='blockquote-footer'>" + chosen.haiku_author + "</footer></blockquote></div>");
+                    $("#poem-spot").append(poem);
+                    console.log(poem);
+                }
+            });
+    }
 
     //adds authors to the dropdown
     function addAuthors() {
-        $.ajax({ url: "/api/poems/", method: "GET" }).done(function (data) {
+        $.ajax({ url: "/api/authors", method: "GET" }).done(function (data) {
             console.log(data);
             for (var z = 0; z < data.length; z++) {
                 var option = data[z];
-                var person = $("<option value='" + option + "'>" + option.haiku_author + "</option>");
+                var person = $("<option value= " + option.haiku_author + " >" + option.haiku_author + "</option>");
                 $("#authorDropDown").append(person);
-                console.log(choice);
+                //console.log(person);
             }
+            // $('#authorDropDown').on('change', function (e) {
+            //     console.log($(this).val());
+            // });
         });
     }
+    // function addAuthors() {
+    //     $.ajax({ url: "/api/authors", method: "GET" }).done(function (data) {
+    //         console.log(data);
+    //         $.each(data, function () {
+    //             $("#authorDropDown").append("<option />").val(this.haiku_author).text(this.haiku_author);
+    //         });
+    //     });
+    // }
     addAuthors();
+
+    //resets the poem display card
+    function clearCard() {
+        $("#poem-spot").empty();
+    };
+
+    //resets the dropdown selections to default
+    function resetSelection() {
+        $("#categoryDropDown").val("Select One");
+        $("#authorDropDown").val("Select One");
+    }
+
 </script>
 
 </html>
