@@ -51,8 +51,8 @@
             <h2>View poems by type</h2>
             <form id="search-bar">
 
-                <div class="form-group read-select">
-                    <label for="category">Poem Category</label>
+                <div class="form-group read-select" id="categoryForm">
+                    <label for="category">Haiku Category</label>
                     <select class="form-control" id="categoryDropDown">
                         <option selected>Select One</option>
                         <option value="Action">Action</option>
@@ -61,24 +61,24 @@
                         <option value="Romantic">Romantic</option>
                         <option value="NSFW">NSFW</option>
                     </select>
-                </div>
 
-                <button type="submit" class="btn btn-primary" id="categorySubmit">Submit</button>
+                    <button type="submit" class="btn btn-primary" id="categorySubmit">Submit</button>
+
+                </div>
 
                 <!-- <fieldset>
                     <label for="date">Date</label>
                     <input type="date" id="dateSearch" name="date" />
                 </fieldset> -->
 
-
-                <div class="form-group read-select">
-                    <label for="authorDropDown">Poem Author</label>
+                <div class="form-group read-select" id="authorForm">
+                    <label for="authorDropDown">Haiku Author</label>
                     <select class="form-control" id="authorDropDown">
                         <option selected>Select One</option>
                     </select>
-                </div>
 
-                <button type="submit" class="btn btn-primary" id="authorSubmit">Submit</button>
+                    <button type="submit" class="btn btn-primary" id="authorSubmit">Submit</button>
+                </div>
 
             </form>
         </div>
@@ -142,10 +142,10 @@
 
     //creates the poem elements and appends each of the results to the poem-spot div
     function displayHaikuAuthor() {
-        var authorString = $("#authorDropDown").val();
+        //var authorString = $("#authorDropDown").val();
         //var url = "/api/poems/author/" + authorString;
         //console.log(url);
-        //var authorString = $("#authorDropDown option:selected").text();
+        var authorString = $("#authorDropDown option:selected").text();
         $.ajax({ url: "/api/poems/author/" + authorString, method: "GET" })
             .done(function (data) {
                 console.log(data);
