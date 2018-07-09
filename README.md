@@ -5,4 +5,4 @@ Haiku You is a Node.js app intended to aid users in writing syllable based Japan
 
 [Link to Project Presentation Slides](https://docs.google.com/presentation/d/1-LUwk1Blh9OaAlCh4cVnkEraY74stMWkwE3O-vv8nLA/edit?usp=sharing)
 
-(http://www.sciencemag.org/sites/default/files/styles/inline__699w__no_aspect/public/WL_HaikuH.jpg?itok=BSHBxuSb)
+![Haiku You](http://www.sciencemag.org/sites/default/files/styles/inline__699w__no_aspect/public/WL_HaikuH.jpg?itok=BSHBxuSb)
